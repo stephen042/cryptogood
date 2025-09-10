@@ -42,7 +42,7 @@ class Login extends Component
             session()->regenerate();
 
             // Redirect by role
-            if ($user->role == 1) {
+            if ($user->role === 1) {
                 redirect()->route('admin.dashboard');
             } else {
                 redirect()->route('app.dashboard');
