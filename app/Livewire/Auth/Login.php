@@ -25,6 +25,12 @@ class Login extends Component
 
         $user = User::where('email', $this->email)->first();
 
+        // Check if user exists before accessing properties
+        if (!$user) {
+            return $this->addError('email', 'Invalid email or password.');
+        }
+
+        // Check if account is on hold
         if ($user->account_hold == 1) {
             return $this->dispatch('notify', type: 'error', message: 'Your account is on hold. Please contact support.');
         }
@@ -35,12 +41,14 @@ class Login extends Component
         ], $this->remember)) {
             session()->regenerate();
 
+            // Redirect by role
             if ($user->role != 1) {
                 redirect()->route('app.dashboard');
             } else {
                 redirect()->route('admin.dashboard');
             }
 
+            // Send login alert email
             $app = config('app.name');
             $userEmail = $user->email;
 
@@ -54,15 +62,15 @@ class Login extends Component
             ];
 
             try {
-                // user email
                 Mail::to($userEmail)->send(new AppMail($subject, $bodyUser));
             } catch (\Throwable $th) {
-                //throw $th;
+                // log error if needed
             }
         }
 
-        $this->addError('email', 'Invalid email or password.');
+        return $this->addError('email', 'Invalid email or password.');
     }
+
 
     public function render()
     {
