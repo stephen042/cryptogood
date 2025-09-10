@@ -45,7 +45,7 @@ class Login extends Component
             $userEmail = $user->email;
 
             $full_name = $user->name;
-            $subject = "Welcome to $app";
+            $subject = "Login Alert into $app";
 
             $bodyUser = [
                 "name" => $full_name,
