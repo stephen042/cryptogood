@@ -143,8 +143,8 @@
 
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
-                    <div class="text-white font-semibold">${{ Auth::user()->account->bitcoin_balance}}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->bitcoin_balance * 1.05 }}%</div>
+                    <div class="text-white font-semibold">${{ Auth::user()->account->bitcoin_balance ?? 0}}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->bitcoin_balance ?? 0 * 1.05 }}%</div>
                 </div>
             </div>
 
@@ -199,8 +199,8 @@
 
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
-                    <div class="text-white font-semibold">${{ Auth::user()->account->ethereum_balance }}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ethereum_balance * 1.98 }}%</div>
+                    <div class="text-white font-semibold">${{ Auth::user()->account->ethereum_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ethereum_balance ?? 0 * 1.98 }}%</div>
                 </div>
             </div>
 
@@ -243,8 +243,8 @@
 
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
-                    <div class="text-white font-semibold">${{ Auth::user()->account->ripple_balance }}</div>
-                    <div class="text-sm" style="color: #34D399;">+1.98%</div>
+                    <div class="text-white font-semibold">${{ Auth::user()->account->ripple_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ripple_balance ?? 0 * 2.98 }}%</div>
                 </div>
             </div>
 
@@ -279,8 +279,8 @@
 
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
-                    <div class="text-white font-semibold">${{ Auth::user()->account->usdt_balance }}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->usdt_balance * 2.98 }}%</div>
+                    <div class="text-white font-semibold">${{ Auth::user()->account->usdt_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->usdt_balance ?? 0 * 2.98 }}%</div>
                 </div>
             </div>
 
