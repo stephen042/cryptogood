@@ -144,7 +144,7 @@
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
                     <div class="text-white font-semibold">${{ Auth::user()->account->bitcoin_balance ?? 0}}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->bitcoin_balance ?? 0 * 1.05 }}%</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->bitcoin_balance ?? 0 * 2.05 }}%</div>
                 </div>
             </div>
 
