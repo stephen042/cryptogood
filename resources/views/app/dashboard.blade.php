@@ -96,7 +96,7 @@
         </div>
 
         <!-- Mother div -->
-        <div class="p-4" style="margin-bottom:100px;">
+        <div class="p-4" style="margin-bottom:40px;">
             <!-- Header -->
             <div class="flex items-center justify-between mb-3">
                 <h6 class="text-white font-semibold text-sm" style="letter-spacing:1.5px;">FAVORITES</h6>
