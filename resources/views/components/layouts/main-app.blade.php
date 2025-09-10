@@ -9,7 +9,9 @@
     <title>
         {{ config('app.name') }} - User Dashboard
     </title>
-    {{-- <link rel="icon" type="image/svg+xml" href="{{ asset('assets/src/images/logo/logo.svg') }}" /> --}}
+    {{--
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/src/images/logo/logo.svg') }}" /> --}}
+    <link rel="icon" type="image/png" href="{{ asset('assets/src/images/logo/favicon.png') }}" />
     <link href="{{ asset('assets/style.css') }}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
