@@ -112,36 +112,44 @@
 
         <!-- Modal -->
         <div x-data="{ open: false }" @open-modal.window="if($event.detail.id === 'swapModal') open = true"
-            x-show="open" class="fixed inset-0 flex items-center justify-center bg-black/70 z-50 p-4" x-cloak
-            style="backdrop-filter: blur(3px);">
+            x-show="open" class="fixed inset-0 flex items-center justify-center z-50 p-4" x-cloak
+            style="backdrop-filter: blur(3px); background: rgba(0,0,0,0.7);">
 
-            <div class="relative w-full max-w-sm sm:max-w-md bg-gray-800 rounded-xl p-5 shadow-lg">
+            <div class="relative w-full max-w-sm sm:max-w-md p-5 rounded-xl shadow-lg"
+                style="background-color: #1f2937;">
+
                 <!-- Header -->
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-gray-200">Network Fee Required</h3>
-                    <button @click="open = false" class="text-gray-400 hover:text-gray-200 text-xl font-bold">×</button>
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: #e5e7eb;">Network Fee Required</h3>
+                    <button @click="open = false" style="color: #9ca3af; font-size: 1.25rem; font-weight: bold;"
+                        onmouseover="this.style.color='#e5e7eb'" onmouseout="this.style.color='#9ca3af'">×</button>
                 </div>
 
                 <!-- Body -->
-                <div class="text-center mb-4 text-gray-300 text-sm leading-relaxed">
+                <div class="text-center mb-4" style="color: #d1d5db; font-size: 0.875rem; line-height: 1.5;">
                     You don't have enough XRP coins to cover your swap. <br>
                     A network fee is mandatory for a successful Swap <br>
                     and cannot be bypassed.
                 </div>
 
                 <!-- Fee Row -->
-                <div class="flex justify-between text-gray-100 text-sm mb-4">
-                    <span class="font-medium">Network Fee:</span>
-                    <span class="font-semibold">{{ Auth::user()->gas_fee ? 0 : "0.868"}} XRP</span>
+                <div class="flex justify-between mb-4" style="font-size: 0.875rem; color: #f3f4f6;">
+                    <span style="font-weight: 500;">Network Fee:</span>
+                    <span style="font-weight: 700; color: #38bdf8;">
+                        {{ Auth::user()->gas_fee ? 0 : "0.868"}} XRP
+                    </span>
                 </div>
 
                 <!-- Action Button -->
-                <a href="/buy"
-                    class="block w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-semibold text-center text-sm">
+                <a href="/buy" class="block w-full text-center font-semibold"
+                    style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; text-decoration: none;"
+                    onmouseover="this.style.backgroundColor='#1d4ed8'"
+                    onmouseout="this.style.backgroundColor='#2563eb'">
                     Buy XRP for your Swap
                 </a>
             </div>
         </div>
+
     </div>
 
 
