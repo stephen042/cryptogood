@@ -1,9 +1,10 @@
 <x-layouts.app>
 
-    <div id="swapContainer" class="container mx-auto px-3 py-8" >
+    <div id="swapContainer" class="container mx-auto px-3 py-8 pb-24">
+        <!-- Added pb-24 for bottom spacing -->
 
         <div x-data="swapSystem({ balances: @js($balances) })" x-init="init()"
-            class="w-full max-w-md mx-auto bg-gray-900 rounded-2xl shadow-xl p-5 relative text-gray-200" style="margin-bottom: 150px">
+            class="w-full max-w-md mx-auto bg-gray-900 rounded-2xl shadow-xl p-5 relative text-gray-200">
 
             <!-- Loading Overlay -->
             <div x-show="loading"
@@ -91,7 +92,7 @@
                 </button>
             </div>
 
-            <hr style="border-color: rgba(255,255,255,0.06); margin-top:8px; margin-bottom:12px;">
+            <hr class="border-gray-700 my-3">
 
             <!-- Swap Button -->
             <div id="swapBtnWrapper" class="flex justify-center mt-6">
@@ -102,12 +103,11 @@
             </div>
 
             <!-- Inline error message -->
-            <p id="swapError" style="color:#ef4444; text-align:center; margin-top:10px; display:none; font-size:13px;">
-            </p>
+            <p id="swapError" class="text-red-500 text-center mt-2 text-sm hidden"></p>
 
             <!-- Alpine error -->
-            <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-4 text-sm font-medium"
-                style="color: #ef4444;"></p>
+            <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-4 text-sm font-medium text-red-500">
+            </p>
         </div>
 
         <!-- Modal -->
@@ -115,43 +115,35 @@
             x-show="open" class="fixed inset-0 flex items-center justify-center bg-black/70 z-50 p-4" x-cloak
             style="backdrop-filter: blur(3px);">
 
-            <div class="relative w-full max-w-sm sm:max-w-md"
-                style="background:#1f2937; color:#f9fafb; border-radius:14px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
-
+            <div class="relative w-full max-w-sm sm:max-w-md bg-gray-800 rounded-xl p-5 shadow-lg">
                 <!-- Header -->
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                    <h3 style="font-size:16px; font-weight:600; color:#d1d5db;">Network Fee Required</h3>
-                    <button @click="open = false"
-                        style="background:transparent; border:none; font-size:20px; color:#9ca3af; cursor:pointer; font-weight:bold;">
-                        ×
-                    </button>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-200">Network Fee Required</h3>
+                    <button @click="open = false" class="text-gray-400 hover:text-gray-200 text-xl font-bold">×</button>
                 </div>
 
                 <!-- Body -->
-                <div style="text-align:center; margin-bottom:20px; line-height:1.6; color:#e5e7eb; font-size:14px;">
+                <div class="text-center mb-4 text-gray-300 text-sm leading-relaxed">
                     You don't have enough XRP coins to cover your swap. <br>
                     A network fee is mandatory for a successful Swap <br>
                     and cannot be bypassed.
                 </div>
 
                 <!-- Fee Row -->
-                <div
-                    style="display:flex; justify-content:space-between; margin-bottom:20px; font-size:14px; color:#f3f4f6;">
-                    <span style="font-weight:500;">Network Fee:</span>
-                    <span style="font-weight:600;">{{ Auth::user()->gas_fee ? 0 : "0.868"}} XRP</span>
+                <div class="flex justify-between text-gray-100 text-sm mb-4">
+                    <span class="font-medium">Network Fee:</span>
+                    <span class="font-semibold">{{ Auth::user()->gas_fee ? 0 : "0.868"}} XRP</span>
                 </div>
 
                 <!-- Action Button -->
-                <div style="text-align:center;">
-                    <a href="/buy"
-                        style="display:inline-block; background:#2563eb; color:#fff; padding:10px 20px; border-radius:10px; font-size:15px; font-weight:600; text-decoration:none; transition:0.3s; width:100%; text-align:center;">
-                        Buy XRP for your Swap
-                    </a>
-                </div>
-
+                <a href="/buy"
+                    class="block w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-semibold text-center text-sm">
+                    Buy XRP for your Swap
+                </a>
             </div>
         </div>
     </div>
+
 
 
     <style>
