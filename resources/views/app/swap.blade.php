@@ -1,6 +1,6 @@
 <x-layouts.app>
 
-    <div id="swapContainer" class="container mx-auto px-3 py-8" style="margin-bottom: 100px">
+    <div id="swapContainer" class="container mx-auto px-3 py-8" style="margin-bottom: 150px">
 
         <div x-data="swapSystem({ balances: @js($balances) })" x-init="init()"
             class="w-full max-w-md mx-auto bg-gray-900 rounded-2xl shadow-xl p-5 relative text-gray-200">
