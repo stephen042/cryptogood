@@ -38,7 +38,7 @@
             </script>
         </div>
         <hr>
-        <div class="w-full max-w-2xl mx-auto px-4 py-10 bg-gray-900 rounded-2xl shadow-lg my-6" style="max-width:600px; margin-bottom:150px;">
+        <div class="w-full max-w-2xl mx-auto px-4 py-10 bg-gray-900 rounded-2xl shadow-lg my-6" style="max-width:600px;">
             <!-- Trade Progress -->
             <div style="margin-bottom:24px;">
                 <p style="color:#d1d5db; font-size:14px; font-weight:500; margin-bottom:8px;">Trade Progress</p>
