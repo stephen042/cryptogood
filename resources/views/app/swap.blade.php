@@ -95,7 +95,7 @@
             <hr class="border-gray-700 my-3">
 
             <!-- Swap Button -->
-            <div id="swapBtnWrapper" class="flex justify-center mt-6" style="margin-bottom: 150px;">
+            <div id="swapBtnWrapper" class="flex justify-center mt-6" style="margin-bottom: 80px;">
                 <button id="swapBtn" type="button" disabled
                     style="width:100%; background:#2563eb; color:white; padding:14px; border-radius:12px; font-size:16px; font-weight:600; text-align:center; transition:0.2s; opacity:0.6; cursor:not-allowed; border:none;">
                     Swap

@@ -1,6 +1,6 @@
 <div>
     <!-- Trade Form -->
-    <form style="padding:24px; border-radius:16px; box-shadow:0 4px 10px rgba(0,0,0,0.4); width:100%; max-width:600px; margin: 0 auto 150px auto;" class="bg-gray-800">
+    <form style="padding:24px; border-radius:16px; box-shadow:0 4px 10px rgba(0,0,0,0.4); width:100%; max-width:600px; margin: 0 auto 80px auto;" class="bg-gray-800">
 
         <!-- Type Select -->
         <div style="margin-bottom:20px;">
