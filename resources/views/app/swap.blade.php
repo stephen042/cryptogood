@@ -1,9 +1,9 @@
 <x-layouts.app>
 
-    <div id="swapContainer" class="container mx-auto px-3 py-8" style="margin-bottom: 150px">
+    <div id="swapContainer" class="container mx-auto px-3 py-8" >
 
         <div x-data="swapSystem({ balances: @js($balances) })" x-init="init()"
-            class="w-full max-w-md mx-auto bg-gray-900 rounded-2xl shadow-xl p-5 relative text-gray-200">
+            class="w-full max-w-md mx-auto bg-gray-900 rounded-2xl shadow-xl p-5 relative text-gray-200" style="margin-bottom: 150px">
 
             <!-- Loading Overlay -->
             <div x-show="loading"
