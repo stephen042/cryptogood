@@ -101,6 +101,9 @@
                     Swap
                 </button>
             </div>
+            <hr>
+            <br>
+            <br>
 
             <!-- Inline error message -->
             <p id="swapError" class="text-red-500 text-center mt-2 text-sm hidden"></p>
