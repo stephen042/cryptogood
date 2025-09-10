@@ -1,7 +1,7 @@
 <x-layouts.app>
-    <div id="swapContainer" class="container mx-auto px-4 py-10">
+    <div id="swapContainer" class="container mx-auto px-3 py-8" style="margin-bottom: 100px">
         <div x-data="swapSystem({ balances: @js($balances) })" x-init="init()"
-            class="max-w-lg mx-auto bg-gray-900 rounded-2xl shadow-xl p-6 relative text-gray-200">
+            class="w-full max-w-md mx-auto bg-gray-900 rounded-2xl shadow-xl p-5 relative text-gray-200">
 
             <!-- Loading Overlay -->
             <div x-show="loading"
@@ -10,7 +10,7 @@
             </div>
 
             <!-- Header -->
-            <h2 class="text-2xl font-bold text-center text-gray-200 mb-6">Crypto Swap</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-center text-gray-200 mb-6">Crypto Swap</h2>
 
             <!-- From Section -->
             <div class="bg-gray-800 rounded-lg p-4 mb-3 border border-gray-700">
@@ -21,14 +21,13 @@
                         x-text="fromCurrency ? `$${userBalances[fromCurrency]?.toFixed(2)}` : ''"></span>
                 </div>
 
-                <div class="flex items-center space-x-3">
-                    <input class="swap-from-input" type="text" readonly
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <input class="swap-from-input flex-1" type="text" readonly
                         :value="fromAmount ? `${(fromAmount / getCoinPrice(fromCurrency)).toFixed(6)} ${fromCurrency}` : ''"
                         placeholder="0.00"
-                        style="flex:1; background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
+                        style="background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
                     <select x-model="fromCurrency" @change="resetAmounts()" id="fromSelect"
-                        class="bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                        style="width:7rem;">
+                        class="w-full sm:w-28 bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                         <option value="">Coin</option>
                         <option value="BTC">BTC</option>
                         <option value="ETH">ETH</option>
@@ -44,7 +43,7 @@
             </div>
 
             <!-- Arrow -->
-            <div class="flex justify-center mb-5">
+            <div class="flex justify-center my-4">
                 <div class="bg-gray-700 p-2 rounded-full">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
@@ -60,14 +59,13 @@
                     <span class="text-sm text-gray-400">You Receive</span>
                 </div>
 
-                <div class="flex items-center space-x-3">
-                    <input class="swap-to-input" type="text" readonly
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <input class="swap-to-input flex-1" type="text" readonly
                         :value="toAmount ? `${(toAmount / getCoinPrice(toCurrency)).toFixed(6)} ${toCurrency}` : ''"
                         placeholder="0.00"
-                        style="flex:1; background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
+                        style="background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
                     <select x-model="toCurrency" @change="resetAmounts()" id="toSelect"
-                        class="bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                        style="width:7rem;">
+                        class="w-full sm:w-28 bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                         <option value="">Coin</option>
                         <option value="BTC">BTC</option>
                         <option value="ETH">ETH</option>
@@ -96,7 +94,7 @@
             <!-- Swap Button -->
             <div id="swapBtnWrapper" class="flex justify-center mt-6">
                 <button id="swapBtn" type="button" disabled
-                    style="width:80%; background:#2563eb; color:white; padding:14px; border-radius:12px; font-size:16px; font-weight:600; text-align:center; transition:0.2s; opacity:0.6; cursor:not-allowed; border:none;">
+                    style="width:100%; background:#2563eb; color:white; padding:14px; border-radius:12px; font-size:16px; font-weight:600; text-align:center; transition:0.2s; opacity:0.6; cursor:not-allowed; border:none;">
                     Swap
                 </button>
             </div>
@@ -112,15 +110,15 @@
 
         <!-- Modal -->
         <div x-data="{ open: false }" @open-modal.window="if($event.detail.id === 'swapModal') open = true"
-            x-show="open" class="fixed inset-0 flex items-center justify-center bg-black/70 z-50" x-cloak
+            x-show="open" class="fixed inset-0 flex items-center justify-center bg-black/70 z-50 p-4" x-cloak
             style="backdrop-filter: blur(3px);">
 
-            <div class="relative"
-                style="background:#1f2937; color:#f9fafb; border-radius:14px; width:100%; max-width:420px; padding:24px; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+            <div class="relative w-full max-w-sm sm:max-w-md"
+                style="background:#1f2937; color:#f9fafb; border-radius:14px; padding:20px; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
 
                 <!-- Header -->
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                    <h3 style="font-size:18px; font-weight:600; color:#d1d5db;">Network Fee Required</h3>
+                    <h3 style="font-size:16px; font-weight:600; color:#d1d5db;">Network Fee Required</h3>
                     <button @click="open = false"
                         style="background:transparent; border:none; font-size:20px; color:#9ca3af; cursor:pointer; font-weight:bold;">
                         ×
@@ -136,7 +134,7 @@
 
                 <!-- Fee Row -->
                 <div
-                    style="display:flex; justify-content:space-between; margin-bottom:24px; font-size:14px; color:#f3f4f6;">
+                    style="display:flex; justify-content:space-between; margin-bottom:20px; font-size:14px; color:#f3f4f6;">
                     <span style="font-weight:500;">Network Fee:</span>
                     <span style="font-weight:600;">{{ Auth::user()->gas_fee ? 0 : "0.868"}} XRP</span>
                 </div>
@@ -144,18 +142,17 @@
                 <!-- Action Button -->
                 <div style="text-align:center;">
                     <a href="/buy"
-                        style="display:inline-block; background:#2563eb; color:#fff; padding:10px 20px; border-radius:10px; font-size:15px; font-weight:600; text-decoration:none; transition:0.3s;">
+                        style="display:inline-block; background:#2563eb; color:#fff; padding:10px 20px; border-radius:10px; font-size:15px; font-weight:600; text-decoration:none; transition:0.3s; width:100%; text-align:center;">
                         Buy XRP for your Swap
                     </a>
                 </div>
 
             </div>
         </div>
-
     </div>
 
-    <style>
 
+    <style>
         @media (min-width: 1024px) {
             #swapContainer {
                 width: 70%;
