@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'is_admin'])->group(function () {
    Route::get('/admin/dashboard', [Admin::class, 'dashboard'])->name('admin.dashboard');
    Route::get('/admin/admin-wallets', [Admin::class, 'adminWallets'])->name('admin.admin-wallets');
    Route::get('/admin/profile', [Admin::class, 'profile'])->name('admin.profile');
