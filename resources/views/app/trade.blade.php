@@ -38,7 +38,34 @@
             </script>
         </div>
         <hr>
-        <div class="w-full max-w-2xl mx-auto px-4 py-10 bg-gray-900 rounded-2xl shadow-lg my-6" style="max-width:600px;">
+        <div style="max-width:600px; margin:0 auto; font-size:14px; display:flex; flex-direction:column; gap:10px;">
+
+            <!-- Balance -->
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; padding:12px 16px;border-radius:8px;">
+                <span style="color:#9ea0a0; font-weight:500;">Balance:</span>
+                <span style="color:#9ea0a0; font-weight:600; font-size:15px;">
+                    ${{ number_format(auth()->user()->balance,2) }}
+                </span>
+            </div>
+
+            <!-- Earnings -->
+            <a href="{{ route('app.send') }}" style="text-decoration:none;">
+                <div
+                    style="display:flex; justify-content:space-between; align-items:center; padding:0px 16px; border-radius:8px;">
+                    <span style="color:#9ea0a0; font-weight:500;">Earnings:</span>
+                    <span style="color:#9ea0a0; font-weight:600; font-size:15px;">
+                        ${{ number_format(auth()->user()->earnings_balance,2) }}
+                    </span>
+                </div>
+            </a>
+
+        </div>
+
+
+        {{-- <hr> --}}
+        <div class="w-full max-w-2xl mx-auto px-4 py-10 bg-gray-900 rounded-2xl shadow-lg my-6"
+            style="max-width:600px;">
             <!-- Trade Progress -->
             <div style="margin-bottom:24px;">
                 <p style="color:#d1d5db; font-size:14px; font-weight:500; margin-bottom:8px;">Trade Progress</p>
