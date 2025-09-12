@@ -100,7 +100,7 @@
             <!-- Header -->
             <div class="flex items-center justify-between mb-3">
                 <h6 class="text-white font-semibold text-sm" style="letter-spacing:1.5px;">FAVORITES</h6>
-                <a href="#" style="color:#3b82f6;" class="text-sm hover:underline">See All</a>
+                <a href="/wallet" style="color:#3b82f6;" class="text-sm hover:underline">See All</a>
             </div>
 
             <!-- Bitcoin -->
@@ -285,7 +285,7 @@
             </div>
 
             <div class="text-center mt-6">
-                <a href="#" style="color:#3b82f6;" class="text-sm">Show All Favorites</a>
+                <a href="/wallet" style="color:#3b82f6;" class="text-sm">Show All Favorites</a>
             </div>
         </div>
 

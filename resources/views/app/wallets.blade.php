@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <div>
+    <div style="max-width:800px; margin:0 auto; padding:16px;">
         <div class="text-center mt-6" style="margin-top: 24px; text-align: center;">
             <a href="{{ route('app.swap') }}" 
                style="display: inline-block; padding: 8px 16px; border-radius: 6px; background-color: #4B5563; color: #fff; font-weight: 600; text-decoration: none; transition: background 0.2s;"

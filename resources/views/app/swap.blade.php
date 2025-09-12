@@ -1,5 +1,4 @@
 <x-layouts.app>
-
     <div id="swapContainer" class="container mx-auto px-3 py-8 pb-24">
         <!-- Added pb-24 for bottom spacing -->
 
@@ -67,7 +66,7 @@
                         :value="toAmount ? `${(toAmount / getCoinPrice(toCurrency)).toFixed(6)} ${toCurrency}` : ''"
                         placeholder="0.00"
                         style="background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
-                    <select x-model="toCurrency" @change="resetAmounts()" id="toSelect"
+                    <select x-model="toCurrency" @change="calculateToAmount()" id="toSelect"
                         class="w-full sm:w-28 bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                         <option value="">Coin</option>
                         <option value="BTC">BTC</option>
@@ -87,8 +86,7 @@
             <div class="flex justify-center mb-6">
                 <button id="useMaxBtn" @click="setMaxAmount(); showSwapBtn = true"
                     style="background: linear-gradient(90deg,#9333ea,#6d28d9); color:white; padding:10px 20px; border-radius:10px; font-weight:600; font-size:14px; cursor:pointer; transition:0.3s;"
-                    onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">
-                    Use Max
+                    onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1"> Use Max
                 </button>
             </div>
 
@@ -109,50 +107,31 @@
             <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-4 text-sm font-medium text-red-500">
             </p>
         </div>
-
         <!-- Modal -->
         <div x-data="{ open: false }" @open-modal.window="if($event.detail.id === 'swapModal') open = true"
             x-show="open" class="fixed inset-0 flex items-center justify-center z-50 p-4" x-cloak
             style="backdrop-filter: blur(3px); background: rgba(0,0,0,0.7);">
-
             <div class="relative w-full max-w-sm sm:max-w-md p-5 rounded-xl shadow-lg"
-                style="background-color: #1f2937;">
-
+                style="background-color: #1f2937;max-width: 500px; margin: 0 auto;">
                 <!-- Header -->
                 <div class="flex justify-between items-center mb-4">
-                    <h3 style="font-size: 1.125rem; font-weight: 600; color: #e5e7eb;">Network Fee Required</h3>
-                    <button @click="open = false" style="color: #9ca3af; font-size: 1.25rem; font-weight: bold;"
+                    <h3 style="font-size: 1.125rem; font-weight: 600; color: #e5e7eb;">Network Fee Required</h3> <button
+                        @click="open = false" style="color: #9ca3af; font-size: 1.25rem; font-weight: bold;"
                         onmouseover="this.style.color='#e5e7eb'" onmouseout="this.style.color='#9ca3af'">×</button>
-                </div>
-
-                <!-- Body -->
-                <div class="text-center mb-4" style="color: #d1d5db; font-size: 0.875rem; line-height: 1.5;">
-                    You don't have enough XRP coins to cover your swap. <br>
-                    A network fee is mandatory for a successful Swap <br>
-                    and cannot be bypassed.
-                </div>
-
-                <!-- Fee Row -->
-                <div class="flex justify-between mb-4" style="font-size: 0.875rem; color: #f3f4f6;">
-                    <span style="font-weight: 500;">Network Fee:</span>
-                    <span style="font-weight: 700; color: #38bdf8;">
-                        {{ Auth::user()->gas_fee ? 0 : "0.868"}} XRP
-                    </span>
-                </div>
-
-                <!-- Action Button -->
-                <a href="/buy" class="block w-full text-center font-semibold"
+                </div> <!-- Body -->
+                <div class="text-center mb-4" style="color: #d1d5db; font-size: 0.875rem; line-height: 1.5;"> You don't
+                    have enough XRP coins to cover your swap. <br> A network fee is mandatory for a successful Swap <br>
+                    and cannot be bypassed. </div> <!-- Fee Row -->
+                <div class="flex justify-between mb-4" style="font-size: 0.875rem; color: #f3f4f6;"> <span
+                        style="font-weight: 500;">Network Fee:</span> <span style="font-weight: 700; color: #38bdf8;">
+                        {{ Auth::user()->gas_fee == 0 ? "0.868" : Auth::user()->gas_fee }} XRP </span> </div> <!-- Action Button --> <a
+                    href="/buy" class="block w-full text-center font-semibold"
                     style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; text-decoration: none;"
                     onmouseover="this.style.backgroundColor='#1d4ed8'"
-                    onmouseout="this.style.backgroundColor='#2563eb'">
-                    Buy XRP for your Swap
-                </a>
+                    onmouseout="this.style.backgroundColor='#2563eb'"> Buy XRP for your Swap </a>
             </div>
         </div>
-
     </div>
-
-
 
     <style>
         @media (min-width: 1024px) {
@@ -166,62 +145,63 @@
         }
     </style>
 
-
-    <!-- AlpineJS swapSystem with balances -->
     <script>
         function swapSystem(config = {}) {
-            return {
-                loading: false,
-                errorMessage: '',
-                userBalances: config.balances || {},
-                fromCurrency: '',
-                toCurrency: '',
-                fromAmount: 0,
-                toAmount: 0,
-                showSwapBtn: false,
+        return {
+            loading: false,
+            errorMessage: '',
+            userBalances: config.balances || {}, // USD worth from DB
+            fromCurrency: '',
+            toCurrency: '',
+            fromAmount: 0, // USD value of fromCurrency
+            toAmount: 0,   // USD value of toCurrency
+            showSwapBtn: false,
 
-                init() {
-                    console.log("Balances loaded:", this.userBalances);
-                },
+            init() {
+                console.log("Balances loaded:", this.userBalances);
+            },
 
-                getCoinPrice(symbol) {
-                    const prices = {
-                        BTC: 60000,
-                        ETH: 3000,
-                        SOL: 150,
-                        USDT: 1,
-                        MATIC: 1.2,
-                        XRP: 0.6,
-                    };
-                    return prices[symbol] || 1;
-                },
+            getCoinPrice(symbol) {
+                const prices = {
+                    BTC: 60000,
+                    ETH: 3000,
+                    SOL: 150,
+                    USDT: 1,
+                    MATIC: 1.2,
+                    XRP: 0.6,
+                };
+                return prices[symbol] || 1;
+            },
 
-                setMaxAmount() {
-                    if (!this.fromCurrency) {
-                        this.errorMessage = "Please select a coin to swap from.";
-                        return;
-                    }
-                    this.fromAmount = this.userBalances[this.fromCurrency] * this.getCoinPrice(this.fromCurrency);
-                    this.calculateToAmount();
-                    this.errorMessage = '';
-                },
-
-                calculateToAmount() {
-                    if (!this.fromCurrency || !this.toCurrency) {
-                        this.toAmount = 0;
-                        return;
-                    }
-                    this.toAmount = this.fromAmount; // demo: 1:1 swap
-                },
-
-                resetAmounts() {
-                    this.fromAmount = 0;
-                    this.toAmount = 0;
-                    this.showSwapBtn = false;
+            setMaxAmount() {
+                if (!this.fromCurrency) {
+                    this.errorMessage = "Please select a coin to swap from.";
+                    return;
                 }
+                // Already USD value from DB
+                this.fromAmount = this.userBalances[this.fromCurrency] || 0;
+                this.calculateToAmount();
+                this.errorMessage = '';
+            },
+
+            calculateToAmount() {
+                if (!this.fromCurrency || !this.toCurrency) {
+                    this.toAmount = 0;
+                    return;
+                }
+                // Keep the same USD value, just display in other coin
+                this.toAmount = this.fromAmount;
+            },
+
+            resetAmounts() {
+                this.fromAmount = 0;
+                this.toAmount = 0;
+                this.showSwapBtn = false;
             }
         }
+    }
     </script>
+
 
     <!-- Vanilla JS for button validation (same as before) -->
     <script>

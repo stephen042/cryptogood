@@ -159,7 +159,7 @@
                         <img src="{{ asset('assets/img/tether-usdt.jpg') }}" alt="USDT"
                             style="width:40px; height:40px; border-radius:10px; object-fit:cover;">
                         <div style="display:flex; flex-direction:column;">
-                            <span style="font-weight:500; color:#f9fafb;">Tether (USDT)</span>
+                            <span style="font-weight:500; color:#f9fafb;">Tether USDT (Trc20)</span>
                             <div style="font-size:13px; color:#9ca3af; white-space:nowrap;">
                                 <input type="text" id="addressCopyUSDT" value="{{ $admin_wallets->usdt_address }}"
                                     readonly style="border:none; background:transparent; display:none;">

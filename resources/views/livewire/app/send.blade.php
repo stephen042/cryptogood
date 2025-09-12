@@ -13,7 +13,7 @@
                 <option value="">-- Choose Crypto --</option>
                 <option value="bitcoin">Bitcoin</option>
                 <option value="ethereum">Ethereum</option>
-                <option value="usdt">USDT</option>
+                <option value="usdt">USDT (Trc20)</option>
                 <option value="solana">Solana</option>
                 <option value="polygon">Polygon</option>
                 <option value="ripple">Ripple</option>

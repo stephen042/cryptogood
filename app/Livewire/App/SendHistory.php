@@ -2,7 +2,7 @@
 
 namespace App\Livewire\App;
 
-use App\Models\Sell;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,7 +15,7 @@ class SendHistory extends Component
 
     public function render()
     {
-        $withdraws = Sell::orderBy('created_at', 'desc')->paginate(5);
+        $withdraws = Auth::user()->sells()->orderBy('created_at', 'desc')->paginate(5);
 
         return view('livewire.app.send-history', [
             'withdraws' => $withdraws,
