@@ -42,7 +42,7 @@
                     class="mr-2 rounded border-gray-300 text-brand-500 focus:ring-brand-500">
                 Keep me logged in
             </label>
-            <a href="" class="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400">
+            <a href="/forgot-password" class="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400">
                 Forgot password?
             </a>
         </div>
