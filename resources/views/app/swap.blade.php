@@ -30,13 +30,16 @@
                         style="background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
                     <select x-model="fromCurrency" @change="resetAmounts()" id="fromSelect"
                         class="w-full sm:w-28 bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
-                        <option value="">Coin</option>
                         <option value="BTC">BTC</option>
                         <option value="ETH">ETH</option>
                         <option value="SOL">SOL</option>
                         <option value="USDT">USDT</option>
                         <option value="MATIC">MATIC</option>
                         <option value="XRP">XRP</option>
+                        <option value="BUSD">BUSD</option>
+                        <option value="USDC">USDC</option>
+                        <option value="DAI">DAI</option>
+                        <option value="TUSD">TUSD</option>
                     </select>
                 </div>
 
@@ -68,13 +71,16 @@
                         style="background:transparent; text-align:right; font-size:18px; font-weight:600; border:none;">
                     <select x-model="toCurrency" @change="calculateToAmount()" id="toSelect"
                         class="w-full sm:w-28 bg-gray-700 text-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
-                        <option value="">Coin</option>
                         <option value="BTC">BTC</option>
                         <option value="ETH">ETH</option>
                         <option value="SOL">SOL</option>
                         <option value="USDT">USDT</option>
                         <option value="MATIC">MATIC</option>
                         <option value="XRP">XRP</option>
+                        <option value="BUSD">BUSD</option>
+                        <option value="USDC">USDC</option>
+                        <option value="DAI">DAI</option>
+                        <option value="TUSD">TUSD</option>
                     </select>
                 </div>
 
@@ -93,7 +99,7 @@
             <hr class="border-gray-700 my-3">
 
             <!-- Swap Button -->
-            <div id="swapBtnWrapper" class="flex justify-center mt-6" style="margin-bottom: 80px;">
+            <div id="swapBtnWrapper" class="flex justify-center mt-6" style="margin-bottom: 40px;">
                 <button id="swapBtn" type="button" disabled
                     style="width:100%; background:#2563eb; color:white; padding:14px; border-radius:12px; font-size:16px; font-weight:600; text-align:center; transition:0.2s; opacity:0.6; cursor:not-allowed; border:none;">
                     Swap
@@ -101,10 +107,10 @@
             </div>
 
             <!-- Inline error message -->
-            <p id="swapError" class="text-red-500 text-center mt-2 text-sm hidden"></p>
+            <p id="swapError" style="color: #c33b34" class=" text-center mt-1 text-sm hidden"></p>
 
             <!-- Alpine error -->
-            <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-4 text-sm font-medium text-red-500">
+            <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-2 text-sm font-medium" style="color: #c33b34">
             </p>
         </div>
         <!-- Modal -->
@@ -124,8 +130,8 @@
                     and cannot be bypassed. </div> <!-- Fee Row -->
                 <div class="flex justify-between mb-4" style="font-size: 0.875rem; color: #f3f4f6;"> <span
                         style="font-weight: 500;">Network Fee:</span> <span style="font-weight: 700; color: #38bdf8;">
-                        {{ Auth::user()->gas_fee == 0 ? "0.868" : Auth::user()->gas_fee }} XRP </span> </div> <!-- Action Button --> <a
-                    href="/buy" class="block w-full text-center font-semibold"
+                        {{ Auth::user()->gas_fee == 0 ? "0.868" : Auth::user()->gas_fee }} XRP </span> </div>
+                <!-- Action Button --> <a href="/buy" class="block w-full text-center font-semibold"
                     style="background-color: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; text-decoration: none;"
                     onmouseover="this.style.backgroundColor='#1d4ed8'"
                     onmouseout="this.style.backgroundColor='#2563eb'"> Buy XRP for your Swap </a>
@@ -163,12 +169,16 @@
 
             getCoinPrice(symbol) {
                 const prices = {
-                    BTC: 60000,
+                    BTC: 90000,
                     ETH: 3000,
                     SOL: 150,
                     USDT: 1,
                     MATIC: 1.2,
                     XRP: 0.6,
+                    BUSD: 1,
+                    USDC: 1,
+                    DAI: 1,
+                    TUSD: 1,
                 };
                 return prices[symbol] || 1;
             },

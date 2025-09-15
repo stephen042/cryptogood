@@ -54,6 +54,7 @@
 
     <x-alert />
     <script defer="" src="{{ asset('assets/bundle.js') }}"></script>
+    <script src="//code.jivosite.com/widget/GKwIssrJXQ" async></script>
     @livewireScripts
 </body>
 

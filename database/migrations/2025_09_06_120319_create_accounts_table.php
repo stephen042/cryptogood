@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('usdt_balance')->default(0);
             $table->string('polygon_balance')->default(0);
             $table->string('ripple_balance')->default(0);
+            $table->string('busd_balance')->default(0);
+            $table->string('usdc_balance')->default(0);
+            $table->string('dai_balance')->default(0);
+            $table->string('tusd_balance')->default(0);
             $table->timestamps();
         });
     }

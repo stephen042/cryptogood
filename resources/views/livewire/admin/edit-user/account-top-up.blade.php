@@ -53,7 +53,7 @@
         <!-- Credit User earns Balance -->
         <form wire:submit.prevent="credit_earn_balance" style="margin-bottom:24px;">
             <label style="display:block; font-size:14px; margin-bottom:6px; color:white;">
-                Credit User Earnings Balance Manually 
+                Credit User Earnings Balance Manually
             </label>
             <div style="display:flex; width:100%; min-width:0;">
                 <input type="number" wire:model.live="credit_earn_bal_amount" placeholder="Credit User Sub Funds"
@@ -133,4 +133,42 @@
             </a>
         </div>
     </div>
+
+    <!-- Admin Message Box -->
+    <div class="bg-white dark:bg-gray-800"
+        style="background:#1f2937; padding:24px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2); width:100%; box-sizing:border-box;">
+
+        <form wire:submit.prevent="saveAdminMessage">
+            <!-- Title -->
+            <label style="display:block; font-size:14px; margin-bottom:6px; color:white;">
+                Message Title
+            </label>
+            <input type="text" wire:model.defer="title" placeholder="Enter message title"
+                style="width:100%; padding:10px 14px; border:1px solid #374151; border-radius:8px; background:#111827; color:white; font-size:14px; margin-bottom:14px;">
+            @error('title')
+            <p style="color:#ef4444; font-size:12px; margin-top:6px;">{{ $message }}</p>
+            @enderror
+
+            <!-- Message -->
+            <label style="display:block; font-size:14px; margin-bottom:6px; color:white;">
+                Message Body
+            </label>
+            <textarea wire:model.defer="message" rows="4" placeholder="Enter message body"
+                style="width:100%; padding:10px 14px; border:1px solid #374151; border-radius:8px; background:#111827; color:white; font-size:14px; resize:none;"></textarea>
+            @error('message')
+            <p style="color:#ef4444; font-size:12px; margin-top:6px;">{{ $message }}</p>
+            @enderror
+
+            <!-- Submit Button -->
+            <div style="margin-top:16px; display:flex; justify-content:flex-end;">
+                <button type="submit"
+                    style="padding:10px 16px; border:1px solid #16a34a; background:none; color:#16a34a; font-size:14px; font-weight:600; border-radius:8px; cursor:pointer;"
+                    onmouseover="this.style.background='#16a34a'; this.style.color='white';"
+                    onmouseout="this.style.background='none'; this.style.color='#16a34a';">
+                    Save Message
+                </button>
+            </div>
+        </form>
+    </div>
+
 </div>

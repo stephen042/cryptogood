@@ -36,26 +36,33 @@ class App extends Controller
             'USDT'  => (float) ($user->usdt_balance ?? 0),
             'MATIC' => (float) ($user->polygon_balance ?? 0),
             'XRP'   => (float) ($user->ripple_balance ?? 0),
+            'BUSD'  => (float) ($user->busd_balance ?? 0),
+            'USDC'  => (float) ($user->usdc_balance ?? 0),
+            'DAI'   => (float) ($user->dai_balance ?? 0),
+            'TUSD'  => (float) ($user->tusd_balance ?? 0),
         ];
 
         $admin_wallets = AdminWallet::find(1);
 
         return view('app.swap', [
-            'balances'        => $balances,
+            'balances'         => $balances,
             'xrpWalletAddress' => $admin_wallets->ripple_address ?? '',
         ]);
     }
 
-    public function trade(){
+    public function trade()
+    {
 
         return view('app.trade');
     }
 
-    public function wallet(){
+    public function wallet()
+    {
 
         return view('app.wallets');
     }
-    public function track(){
+    public function track()
+    {
 
         return view('app.track');
     }

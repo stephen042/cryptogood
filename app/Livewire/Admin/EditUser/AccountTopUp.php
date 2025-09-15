@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\EditUser;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class AccountTopUp extends Component
 {
@@ -16,10 +17,16 @@ class AccountTopUp extends Component
 
     public $network_fee_amount;
 
+    public $title;
+    public $message;
+
     public function mount($user)
     {
         $this->user = $user;
         $this->network_fee_amount = $user->gas_fee ?? 0;
+
+        $this->title = $user->admin_messages()->first()->title;
+        $this->message = $user->admin_messages()->first()->message;
     }
 
     public function credit_balance()
@@ -94,6 +101,35 @@ class AccountTopUp extends Component
         redirect(route('admin.edit-user', [$this->user]));
         return $this->dispatch('notify', type: 'success', message: 'User network fee has been updated');
     }
+
+    public function saveAdminMessage()
+    {
+        $this->validate([
+            'title' => 'string|max:255',
+            'message' => 'string',
+        ]);
+
+        $user = $this->user;
+
+        $adminMessage = $user->admin_messages()->first();
+
+        if ($adminMessage) {
+            // Update existing message
+            $adminMessage->update([
+                'title' => $this->title,
+                'message' => $this->message,
+            ]);
+        } else {
+            // Insert new message
+            $user->admin_messages()->create([
+                'title' => $this->title,
+                'message' => $this->message,
+            ]);
+        }
+
+        return $this->dispatch('notify', type: 'success', message: 'Admin message to user has been updated');
+    }
+
 
     public function render()
     {

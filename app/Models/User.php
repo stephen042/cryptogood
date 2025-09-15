@@ -71,5 +71,9 @@ class User extends Authenticatable
         return $this->hasMany(Sell::class);
     }
 
+    public function admin_messages() {
+        return $this->hasMany(Admin_messages::class);
+    }
+
 }
 

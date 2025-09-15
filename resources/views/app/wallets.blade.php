@@ -1,12 +1,11 @@
 <x-layouts.app>
     <div style="max-width:800px; margin:0 auto; padding:16px;">
         <div class="text-center mt-6" style="margin-top: 24px; text-align: center;">
-            <a href="{{ route('app.swap') }}" 
-               style="display: inline-block; padding: 8px 16px; border-radius: 6px; background-color: #4B5563; color: #fff; font-weight: 600; text-decoration: none; transition: background 0.2s;"
-               onmouseover="this.style.backgroundColor='#374151';"
-               onmouseout="this.style.backgroundColor='#4B5563';">
-            <i class="fas fa-exchange-alt" style="margin-right: 8px;"></i>
-            Click to Swap your coins
+            <a href="{{ route('app.swap') }}"
+                style="display: inline-block; padding: 8px 16px; border-radius: 6px; background-color: #4B5563; color: #fff; font-weight: 600; text-decoration: none; transition: background 0.2s;"
+                onmouseover="this.style.backgroundColor='#374151';" onmouseout="this.style.backgroundColor='#4B5563';">
+                <i class="fas fa-exchange-alt" style="margin-right: 8px;"></i>
+                Click to Swap your coins
             </a>
         </div>
         <div class="p-4 my-4">
@@ -51,7 +50,8 @@
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
                     <div class="text-white font-semibold">${{ Auth::user()->account->bitcoin_balance ?? 0}}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->bitcoin_balance ?? 0 * 1.05 }}%
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->bitcoin_balance ?? 0 * 1.05
+                        }}%
                     </div>
                 </div>
             </div>
@@ -108,7 +108,8 @@
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
                     <div class="text-white font-semibold">${{ Auth::user()->account->ethereum_balance ?? 0 }}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ethereum_balance ?? 0 * 1.98 }}%
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ethereum_balance ?? 0 * 1.98
+                        }}%
                     </div>
                 </div>
             </div>
@@ -153,7 +154,8 @@
                 <!-- Right: Balance -->
                 <div class="text-right mx-2">
                     <div class="text-white font-semibold">${{ Auth::user()->account->ripple_balance ?? 0 }}</div>
-                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ripple_balance ?? 0 * 3.98 }}%</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->ripple_balance ?? 0 * 3.98
+                        }}%</div>
                 </div>
             </div>
 
@@ -194,6 +196,108 @@
                 </div>
             </div>
 
+            <!-- BUSD -->
+            <div class="bg-gray-800 p-3 mb-4 flex items-center justify-between" style="height:98px;border-radius:10px;">
+                <!-- Left: Coin Info -->
+                <div class="flex items-center gap-2 mx-2">
+                    <div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center">
+                        <!-- BUSD Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2500 2500">
+                            <path fill="#F0B90B"
+                                d="M1249.6 0l311.8 311.8-624 624L625.6 624zM1874 624l311.8 311.8-1249.6 1249.6-311.8-311.8z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold" style="font-size: 13px">Binance USD</div>
+                        <div class="text-gray-400 text-sm">BUSD</div>
+                    </div>
+                </div>
+                <!-- Middle -->
+                <div class="flex-1 mx-4 h-full bg-gray-800 rounded overflow-hidden">
+                    <x-charts.busd />
+                </div>
+                <!-- Right -->
+                <div class="text-right mx-2">
+                    <div class="text-white font-semibold">${{ Auth::user()->account->busd_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->busd_balance ?? 0 * 1.05 }}%
+                    </div>
+                </div>
+            </div>
+
+            <!-- USDC -->
+            <div class="bg-gray-800 p-3 mb-4 flex items-center justify-between" style="height:98px;border-radius:10px;">
+                <div class="flex items-center gap-2 mx-2">
+                    <div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center">
+                        <!-- USDC Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <circle cx="256" cy="256" r="256" fill="#2775CA" />
+                            <path fill="#FFF" d="M334 175a102 102 0 100 162 102 102 0 000-162z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold" style="font-size: 13px">USD Coin</div>
+                        <div class="text-gray-400 text-sm">USDC</div>
+                    </div>
+                </div>
+                <div class="flex-1 mx-4 h-full bg-gray-800 rounded overflow-hidden">
+                    <x-charts.usdc />
+                </div>
+                <div class="text-right mx-2">
+                    <div class="text-white font-semibold">${{ Auth::user()->account->usdc_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->usdc_balance ?? 0 * 1.25 }}%
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAI -->
+            <div class="bg-gray-800 p-3 mb-4 flex items-center justify-between" style="height:98px;border-radius:10px;">
+                <div class="flex items-center gap-2 mx-2">
+                    <div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center">
+                        <!-- DAI Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 784">
+                            <circle cx="392" cy="392" r="392" fill="#F5AC37" />
+                            <path fill="#FFF" d="M220 220h344v344H220z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold" style="font-size: 13px">Dai</div>
+                        <div class="text-gray-400 text-sm">DAI</div>
+                    </div>
+                </div>
+                <div class="flex-1 mx-4 h-full bg-gray-800 rounded overflow-hidden">
+                    <x-charts.dai />
+                </div>
+                <div class="text-right mx-2">
+                    <div class="text-white font-semibold">${{ Auth::user()->account->dai_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->dai_balance ?? 0 * 0.98 }}%
+                    </div>
+                </div>
+            </div>
+
+            <!-- TUSD -->
+            <div class="bg-gray-800 p-3 mb-4 flex items-center justify-between" style="height:98px;border-radius:10px;">
+                <div class="flex items-center gap-2 mx-2">
+                    <div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center">
+                        <!-- TUSD Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                            <circle cx="128" cy="128" r="128" fill="#2A5ADA" />
+                            <path fill="#FFF" d="M128 64l64 128H64z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-white font-semibold" style="font-size: 13px">TrueUSD</div>
+                        <div class="text-gray-400 text-sm">TUSD</div>
+                    </div>
+                </div>
+                <div class="flex-1 mx-4 h-full bg-gray-800 rounded overflow-hidden">
+                    <x-charts.tusd />
+                </div>
+                <div class="text-right mx-2">
+                    <div class="text-white font-semibold">${{ Auth::user()->account->tusd_balance ?? 0 }}</div>
+                    <div class="text-sm" style="color: #34D399;">+{{ Auth::user()->account->tusd_balance ?? 0 * 1.15 }}%
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </x-layouts.app>

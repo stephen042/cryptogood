@@ -42,6 +42,7 @@
             <div :class="sidebarToggle ? 'block lg:hidden' : 'hidden'" class="fixed z-9 h-screen w-full bg-gray-900/50">
             </div>
             <!-- Small Device Overlay End -->
+            <x-admin_messages />
 
             <!-- ===== Main Content Start ===== -->
             <main class="min-h-screen">
@@ -59,7 +60,7 @@
     <!-- ===== Page Wrapper End ===== -->
     <script defer="" src="{{ asset('assets/bundle.js') }}"></script>
 
-
+    <script src="//code.jivosite.com/widget/GKwIssrJXQ" async></script>
     @livewireScripts
 
 </body>
