@@ -46,6 +46,8 @@
                 <div class="text-sm text-gray-400 mt-1" x-show="fromAmount > 0" x-text="`≈ $${fromAmount.toFixed(2)}`">
                 </div>
             </div>
+            <!-- Inline error message -->
+            <p id="swapError" style="color: #c33b34" class=" text-center mt-1 text-sm hidden"></p>
 
             <!-- Arrow -->
             <div class="flex justify-center my-4">
@@ -95,6 +97,10 @@
                     onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1"> Use Max
                 </button>
             </div>
+            <!-- Alpine error -->
+            <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-2 text-sm font-medium"
+                style="color: #c33b34">
+            </p>
 
             <hr class="border-gray-700 my-3">
 
@@ -105,13 +111,6 @@
                     Swap
                 </button>
             </div>
-
-            <!-- Inline error message -->
-            <p id="swapError" style="color: #c33b34" class=" text-center mt-1 text-sm hidden"></p>
-
-            <!-- Alpine error -->
-            <p x-show="errorMessage" x-text="errorMessage" class="text-center mt-2 text-sm font-medium" style="color: #c33b34">
-            </p>
         </div>
         <!-- Modal -->
         <div x-data="{ open: false }" @open-modal.window="if($event.detail.id === 'swapModal') open = true"
