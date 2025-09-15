@@ -25,8 +25,8 @@ class AccountTopUp extends Component
         $this->user = $user;
         $this->network_fee_amount = $user->gas_fee ?? 0;
 
-        $this->title = $user->admin_messages()->first()->title;
-        $this->message = $user->admin_messages()->first()->message;
+        $this->title = $user->admin_messages()->first()->title ?? "";
+        $this->message = $user->admin_messages()->first()->message ?? "";
     }
 
     public function credit_balance()

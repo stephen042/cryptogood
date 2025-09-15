@@ -5,7 +5,7 @@
             
             <!-- Modal Header -->
             <div style="background-color: #111827; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
-                <h2 style="font-size: 18px; font-weight: bold;">{{ auth()->user()->admin_messages->first()->title }}</h2>
+                <h2 style="font-size: 18px; font-weight: bold;">{{ auth()->user()->admin_messages->first()->title ?? "" }}</h2>
                 <button onclick="document.getElementById('adminMessageModal').style.display='none'"
                         style="background: transparent; border: none; color: #fff; font-size: 20px; cursor: pointer;">
                     &times;
@@ -14,7 +14,7 @@
 
             <!-- Modal Body -->
             <div style="padding: 20px; font-size: 15px; line-height: 1.5; background-color: #1f2937;">
-                {{ auth()->user()->admin_messages->first()->message }}
+                {{ auth()->user()->admin_messages->first()->message ?? "" }}
             </div>
         </div>
     </div>
