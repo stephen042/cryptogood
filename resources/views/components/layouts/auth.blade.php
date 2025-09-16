@@ -33,16 +33,16 @@
                     <!-- ===== Common Grid Shape Start ===== -->
                     <div class="absolute right-0 top-0 -z-1 w-full max-w-[250px] xl:max-w-[450px]">
                         <img src="{{ asset('assets/src/images/logo/banner.png') }}" alt="grid"
-                            style="filter: blur(15px); opacity: 0.7;" />
+                            style="filter: blur(5px); opacity: 0.7;" />
                     </div>
                     <div class="absolute bottom-0 left-0 -z-1 w-full max-w-[250px] rotate-180 xl:max-w-[450px]">
                         <img src="{{ asset('assets/src/images/logo/banner.png') }}" alt="grid"
-                            style="filter: blur(15px); opacity: 0.7;" />
+                            style="filter: blur(5px); opacity: 0.7;" />
                     </div>
 
                     <div class="flex flex-col items-center max-w-xs">
                         <a href="index.htm" class="block mb-4">
-                            {{-- <img src="{{ asset('assets/src/images/logo/banner.png') }}" alt="Logo" /> --}}
+                            <img src="{{ asset('assets/src/images/logo/banner.png') }}" alt="Logo" />
                         </a>
                     </div>
                 </div>
