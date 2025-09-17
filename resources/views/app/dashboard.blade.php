@@ -107,7 +107,7 @@
             $favorites = [
             ['name'=>'Bitcoin','symbol'=>'BTC','img'=>'bitcoin.jpg','chart'=>'btc','balance'=>'bitcoin_balance','percent'=>2.05],
             ['name'=>'Ethereum','symbol'=>'ETH','img'=>'ethereum.png','chart'=>'eth','balance'=>'ethereum_balance','percent'=>1.98],
-            ['name'=>'Ripple','symbol'=>'XRP','img'=>'ripple.png','chart'=>'xrp','balance'=>'ripple_balance','percent'=>2.98],
+            ['name'=>'Ripple','symbol'=>'XRP','img'=>'Ripple.png','chart'=>'xrp','balance'=>'ripple_balance','percent'=>2.98],
             ['name'=>'Tether','symbol'=>'USDT','img'=>'tether-usdt.jpg','chart'=>'usdt','balance'=>'usdt_balance','percent'=>2.98],
             ];
 
