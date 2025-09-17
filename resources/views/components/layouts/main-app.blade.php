@@ -31,10 +31,6 @@
 
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden bg-gray-900 text-gray-100">
-        <!-- ===== Sidebar Start ===== -->
-        {{--
-        <x-layouts.app.sidebar /> --}}
-        <!-- ===== Sidebar End ===== -->
 
         <!-- ===== Content Area Start ===== -->
         <div class="relative flex flex-col flex-1 overflow-x-hidden overflow-y-auto">
