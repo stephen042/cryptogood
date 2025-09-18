@@ -17,6 +17,11 @@
 
         </div>
         <div class="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
+            <!-- Logo Section -->
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="{{ asset('assets/src/images/logo/favicon.png') }}" alt="Logo" width="80" height="80"
+                    style="max-width:150px; display:inline-block;border-radius:50%;">
+            </div>
             <div>
                 <div class="mb-5 sm:mb-8">
                     <h1 class="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">

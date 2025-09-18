@@ -21,11 +21,10 @@
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
-    :class="{'dark bg-gray-900': darkMode === true}">
+    :class="{'dark bg-gray-900': darkMode === true}" style="background-color: #021E40;">
     <!-- ===== Page Wrapper Start ===== -->
     <div class="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
         <div class="relative flex flex-col justify-center w-full h-screen dark:bg-gray-900 sm:p-0 lg:flex-row">
-
             {{ $slot }}
 
             <div class="relative items-center hidden w-full h-full bg-brand-950 dark:bg-white/5 lg:grid lg:w-1/2">

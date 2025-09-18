@@ -259,11 +259,11 @@
                     <p class="inline-block font-normal text-gray-500 dark:text-gray-400">
                         By creating an account means you agree to the
                         <span class="text-gray-800 dark:text-white/90">
-                            Terms and Conditions,
+                            <a href="/">Terms and Conditions,</a>
                         </span>
                         and our
                         <span class="text-gray-800 dark:text-white">
-                            Privacy Policy
+                            <a href="/">Privacy Policy</a>
                         </span>
                     </p>
                 </label>
