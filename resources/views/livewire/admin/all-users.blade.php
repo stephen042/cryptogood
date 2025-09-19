@@ -60,13 +60,13 @@
 
                             <!-- Activate/Deactivate -->
                             @if ($user->account_hold == 2)
-                            <button type="button" wire:click="deactivateUser({{ $user->id }})"
+                            <button type="button" wire:click.prevent="deactivateUser({{ $user->id }})"
                                 wire:confirm="Are you sure you want to Deactivate this user?"
                                 style="display:flex; align-items:center; gap:6px; padding:6px 12px; background:none; border:none; color:#facc15; font-weight:600; border-radius:6px; cursor:pointer;">
                                 ⚠️ <span>Deactivate</span>
                             </button>
                             @else
-                            <button type="button" wire:click="activateUser({{ $user->id }})"
+                            <button type="button" wire:click.prevent="activateUser({{ $user->id }})"
                                 wire:confirm="Are you sure you want to Activate this user?"
                                 style="display:flex; align-items:center; gap:6px; padding:6px 12px; background:none; border:none; color:#22c55e; font-weight:600; border-radius:6px; cursor:pointer;">
                                 ✅ <span>Activate</span>

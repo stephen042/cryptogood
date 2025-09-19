@@ -4,12 +4,13 @@ namespace App\Livewire\Admin;
 
 use App\Models\User;
 use App\Mail\AppMail;
-use GuzzleHttp\Psr7\Message;
 use Livewire\Component;
+use GuzzleHttp\Psr7\Message;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Mail;
-
 use function PHPSTORM_META\type;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AllUsers extends Component
 {
@@ -32,56 +33,66 @@ class AllUsers extends Component
         try {
             $user->account_hold = 2;
             $result = $user->save();
-            $this->dispatch('notify', type: 'success', message: 'User Activated');
         } catch (\Throwable $th) {
             $result = false;
             $this->dispatch('notify', type: 'error', message: 'Error Activating User');
         }
 
-        // Only send welcome email if the user has not verified their email (i.e., is a new user)
-        if ($result && $user->balance == 0 && $user->account_hold == 2) {
+        if ($result && Hash::check('12345678', $user->password) === false) {
+            // This means the password is NOT the temporary one yet,
+            // so this is the first activation → reset and send email
             $app = config('app.name');
             $userEmail = $user->email;
-            $loginUrl = url("$app/login");
+            $loginUrl = url("login");
 
             $full_name = $user->name;
             $subject = "Account Activated";
 
+            // Reset password to temporary
+            $temporaryPassword = '12345678';
+            $user->password = bcrypt($temporaryPassword);
+            $user->save();
+
             $bodyUser = [
                 "name" => $full_name,
-                "title" => "Welcome to $app – Your Account is Approved",
+                "title" => "Your Account is Now Active",
                 "message" => "
-                    <p>Hello $full_name,</p>
-                    <p>We’re excited to let you know that your <strong>$app</strong> account has been successfully approved and is now ready to use!</p>
-                    <p>You can log in anytime to explore your dashboard, manage your activities, and take full advantage of the features we’ve built for you.</p>
-                    <p style='text-align:center; margin:25px 0;'>
-                        <a href='$loginUrl' style='background-color:#007bff; color:#ffffff; padding:12px 24px; border-radius:6px; text-decoration:none; font-weight:bold;'>Log In to Your Account</a>
-                    </p>
-                    <p>We’re thrilled to have you with us, and we’re committed to providing you with a seamless and secure experience. If you have any questions, feel free to reach out to our support team at any time.</p>
-                    <p>Welcome aboard, and here’s to a successful journey with <strong>$app</strong>!</p>
-                ",
+        <p>Hello $full_name,</p>
+        <p>Your <strong>$app</strong> account is now active and ready to use.</p>
+        <p><strong>Access Info:</strong></p>
+        <ul>
+            <li>Email: <span style='color:#007bff;'>$userEmail</span></li>
+            <li>Temporary Password: <span style='color:#007bff;'>$temporaryPassword</span></li>
+        </ul>
+        <p>We recommend logging in and updating your password as soon as possible. For your protection, inactive accounts may be temporarily restricted after 24 hours if the password remains unchanged.</p>
+        <p style='text-align:center; margin:20px 0;'>
+            <a href='$loginUrl' style='background-color:#007bff; color:#ffffff; padding:10px 20px; border-radius:5px; text-decoration:none;'>Access Your Account</a>
+        </p>
+        <p>Welcome to <strong>$app</strong>. If you have any questions, our team is here to assist you.</p>
+        ",
             ];
 
             $bodyAdmin = [
                 "name" => "Admin",
                 "title" => "New User Account Activated",
                 "message" => "
-                    <p>Hello Admin,</p>
-                    <p>A user account for <strong>$full_name</strong> has been activated on <strong>$app</strong>.</p>
-                    <p>You can contact the user at <a href='mailto:$userEmail'>$userEmail</a> if needed.</p>
-                ",
+        <p>Hello Admin,</p>
+        <p>A user account for <strong>$full_name</strong> has been activated on <strong>$app</strong>.</p>
+        <p>You can contact the user at <a href='mailto:$userEmail'>$userEmail</a> if needed.</p>
+        ",
             ];
 
             try {
-                // user email
+                // Send user email
                 Mail::to($userEmail)->send(new AppMail($subject, $bodyUser));
 
-                // Admin email
+                // Send admin email
                 Mail::to(config('app.Admin_email'))->send(new AppMail($subject, $bodyAdmin));
             } catch (\Throwable $th) {
-                //throw $th;
+                // log error if needed
             }
         }
+        $this->dispatch('notify', type: 'success', message: 'User Activated');
     }
     public function deactivateUser($id)
     {

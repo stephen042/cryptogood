@@ -2,7 +2,8 @@
     <div class="flex grow items-center justify-between px-4 py-2 lg:px-5 lg:py-3">
 
         <!-- Left: Gear link (20% smaller) -->
-        <a href="#settings" class="flex h-10 w-10 items-center justify-center rounded-lg text-white lg:h-11 lg:w-11">
+        <a href="#settings" @click.prevent="$dispatch('open-modal', {id: 'passwordModal'})"
+            class="flex h-10 w-10 items-center justify-center rounded-lg text-white lg:h-11 lg:w-11">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round"

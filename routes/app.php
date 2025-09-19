@@ -3,7 +3,7 @@
 use App\Http\Controllers\App;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','is_user'])->group(function () {
     Route::get('/dashboard', [App::class, 'dashboard'])->name('app.dashboard');
     Route::get('/buy', [App::class, 'buy'])->name('app.buy');
     Route::get('/send', [App::class, 'send'])->name('app.send');

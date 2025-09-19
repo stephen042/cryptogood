@@ -1,8 +1,9 @@
 <!-- Page Wrapper -->
-<div class="page-wrapper" style="padding-bottom:100px;"> <!-- nav height + extra safe space -->
+<div class="page-wrapper" style="padding-bottom:100px;">
+    <!-- nav height + extra safe space -->
 
     <!-- Your page content here -->
-    
+
 
     <!-- Bottom Navigation -->
     <div class="bottom-nav"
@@ -11,14 +12,16 @@
         <!-- Home -->
         <a href="{{ route('app.dashboard') }}"
             style="color:#4b5563; text-decoration:none; font-size:14px; display:flex; flex-direction:column; align-items:center;">
-            <i class="fa-solid fa-house {{ request()->routeIs('app.dashboard') ? ' text-gray-600' : '' }}" style="font-size:20px; margin-bottom:4px;"></i>
+            <i class="fa-solid fa-house {{ request()->routeIs('app.dashboard') ? ' text-gray-600' : '' }}"
+                style="font-size:20px; margin-bottom:4px;"></i>
             Home
         </a>
 
         <!-- Wallet -->
         <a href="{{ route('app.wallet') }}"
             style="color:#4b5563; text-decoration:none; font-size:14px; display:flex; flex-direction:column; align-items:center; margin-right:60px;">
-            <i class="fa-solid fa-wallet {{ request()->routeIs('app.wallet') ? ' text-gray-600' : '' }}" style="font-size:20px; margin-bottom:4px;"></i>
+            <i class="fa-solid fa-wallet {{ request()->routeIs('app.wallet') ? ' text-gray-600' : '' }}"
+                style="font-size:20px; margin-bottom:4px;"></i>
             Wallet
         </a>
 
@@ -49,7 +52,8 @@
         <!-- Track -->
         <a href="{{ route('app.track') }}"
             style="color:#4b5563; text-decoration:none; font-size:14px; display:flex; flex-direction:column; align-items:center;">
-            <i class="fa-solid fa-chart-line {{ request()->routeIs('app.track') ? ' text-gray-600' : '' }}" style="font-size:20px; margin-bottom:4px;"></i>
+            <i class="fa-solid fa-chart-line {{ request()->routeIs('app.track') ? ' text-gray-600' : '' }}"
+                style="font-size:20px; margin-bottom:4px;"></i>
             Track
         </a>
 
@@ -78,3 +82,28 @@
         </style>
     </div>
 </div>
+<style>
+    /* Desktop screens */
+    @media (min-width: 1034px) {
+        .bottom-nav {
+            height: 70px !important;
+            /* keep same height */
+            justify-content: center !important;
+            gap: 50px;
+            padding: 0 20px;
+        }
+
+        .center-logo {
+            position: relative !important;
+            bottom: 25px !important;
+            left: 0% !important;
+            transform: translateX(-50%) !important;
+            margin: 0;
+        }
+
+        /* Remove extra padding on wrapper for desktop */
+        .page-wrapper {
+            padding-bottom: 0 !important;
+        }
+    }
+</style>

@@ -28,6 +28,7 @@
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark bg-gray-900': darkMode === true}" style="font-family: 'Poppins', sans-serif;">
     <x-alert />
+    <livewire:app.settings />
 
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden bg-gray-900 text-gray-100">
@@ -54,6 +55,12 @@
         <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
+    <script>
+        window.addEventListener('password-updated', () => {
+        alert('Password changed successfully!');
+        location.reload(); // reload page after pressing OK
+    });
+    </script>
     <script defer="" src="{{ asset('assets/bundle.js') }}"></script>
 
     <script src="//code.jivosite.com/widget/GKwIssrJXQ" async></script>
