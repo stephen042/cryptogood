@@ -221,22 +221,7 @@
             @enderror
         </div>
 
-        <!-- Password -->
-        <div>
-            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
-            <input wire:model.defer="password" id="password" type="password"
-                class="w-full px-3 py-2 mt-1 border rounded-md text-gray-900 dark:text-white dark:bg-gray-800 dark:border-gray-700 focus:ring focus:ring-blue-500" />
-            @error('password') <span class="text-sm " style="color: rgb(239, 55, 55)">{{ $message }}</span> @enderror
-        </div>
-
-        <!-- Confirm Password -->
-        <div>
-            <label for="password_confirmation"
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm Password</label>
-            <input wire:model.defer="password_confirmation" id="password_confirmation" type="password"
-                class="w-full px-3 py-2 mt-1 border rounded-md text-gray-900 dark:text-white dark:bg-gray-800 dark:border-gray-700 focus:ring focus:ring-blue-500" />
-        </div>
-
+        <br>
         <!-- Terms Checkbox -->
         <div>
             <div x-data="{ checkboxToggle: false }">
@@ -272,7 +257,7 @@
 
         <!-- Submit -->
         <div>
-            <x-button text="Register" color="green" type="submit"
+            <x-button text="Request CallBack" color="green" type="submit"
                 class="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600" />
         </div>
     </form>

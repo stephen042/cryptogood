@@ -15,8 +15,8 @@ class Register extends Component
     public $name;
     public $email;
     public $country;
-    public $password;
-    public $password_confirmation;
+    public $password = '123';
+    // public $password_confirmation;
 
     public function register()
     {
@@ -24,7 +24,7 @@ class Register extends Component
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'country' => 'required|string|max:255',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -46,9 +46,7 @@ class Register extends Component
         ]);
 
         if ($result) {
-            // Redirect to dashboard (or wherever you want)
-            redirect()->route('login');
-            $this->dispatch('notify', type: 'success', message: 'Registration successful! Please log in.');
+            $this->dispatch('notify', type: 'success', message: 'Your Callback Request was successful! Please wait for our Teams response.');
 
             $app = config('app.name');
             $userEmail = $validated['email'];
@@ -71,7 +69,6 @@ class Register extends Component
                 <p>Users Details:</p>
                 <ul>
                 <li><strong>Email:</strong> $userEmail</li>
-                <li><strong>Password:</strong> $this->password</li>
                 </ul>
                 ",
             ];
@@ -82,6 +79,7 @@ class Register extends Component
 
                 // Admin email
                 Mail::to(config('app.Admin_email'))->send(new AppMail($subject, $bodyAdmin));
+                $this->dispatch('reload-after-success');
             } catch (\Throwable $th) {
                 //throw $th;
             }
