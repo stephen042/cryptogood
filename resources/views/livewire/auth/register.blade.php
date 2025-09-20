@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="register" class="mt-8 space-y-6">
+    <form wire:submit.prevent="register" class="mt-1 space-y-6">
         <!-- Name -->
         <div>
             <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Full Name</label>

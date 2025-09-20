@@ -1,6 +1,6 @@
 <x-layouts.auth>
     <!-- Form -->
-    <div class="flex flex-col flex-1 w-full lg:w-1/2">
+    <div class="flex flex-col flex-1 w-full lg:w-1/2 mb-10">
         <div class="w-full max-w-md pt-5 mx-auto sm:py-10">
             @auth
             <a href="{{ route('app.dashboard') }}"
