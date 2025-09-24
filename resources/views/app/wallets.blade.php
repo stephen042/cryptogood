@@ -62,9 +62,9 @@
                         <div class="text-white font-semibold">
                             ${{ Auth::user()->account->{$coin['balance']} ?? 0 }}
                         </div>
-                        {{-- <div class="text-sm" style="color: #34D399;">
+                        <div class="text-sm" style="color: #34D399;">
                             +{{ (Auth::user()->account->{$coin['balance']} ?? 0) * $coin['percent'] }}%
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
                 @endforeach
