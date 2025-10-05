@@ -7,18 +7,20 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta name="description"
         content="We are Leading global, FCA regulated broker, providing trading services in Forex, CFDs and Commodities. Trade with tight spreads and fast execution." />
+
+    <!-- Open Graph for social media -->
     <meta property="og:title" content="Global FCA Regulated Broker | Trade Forex, CFDs & Commodities">
     <meta property="og:description"
         content="We are a leading global FCA-regulated broker, providing trading services in Forex, CFDs, and Commodities. Trade with tight spreads and fast execution.">
+    <meta property="og:image" content="{{ asset('assets/src/images/logo/favicon.png') }}">
+    <meta property="og:type" content="website">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ config('app.name') }} | Sign Up</title>
-    {{--
-    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/src/images/logo/logo.svg') }}" /> --}}
+
     <link rel="icon" type="image/png" href="{{ asset('assets/src/images/logo/favicon.png') }}" />
     <link href="{{ asset('assets/style.css') }}" rel="stylesheet" />
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     @livewireStyles
-
 </head>
 
 <body
