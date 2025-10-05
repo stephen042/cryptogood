@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta name="description"
+        content="We are Leading global, FCA regulated broker, providing trading services in Forex, CFDs and Commodities. Trade with tight spreads and fast execution." />
+    <meta property="og:title" content="Global FCA Regulated Broker | Trade Forex, CFDs & Commodities">
+    <meta property="og:description"
+        content="We are a leading global FCA-regulated broker, providing trading services in Forex, CFDs, and Commodities. Trade with tight spreads and fast execution.">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ config('app.name') }} | Sign Up</title>
     {{--
