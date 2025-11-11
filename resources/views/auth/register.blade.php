@@ -24,10 +24,10 @@
             <div class="mb-5 sm:mb-8">
                 <center>
                     <h1 class="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-                        Request A Call Back
+                        Register An Account
                     </h1>
                     <p class="text-sm text-gray-500 dark:text-gray-100">
-                        Enter the required details below to get a call back from our Team.
+                        Enter the required details below.
                     </p>
                 </center>
 

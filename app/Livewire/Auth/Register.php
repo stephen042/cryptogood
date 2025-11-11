@@ -15,8 +15,8 @@ class Register extends Component
     public $name;
     public $email;
     public $country;
-    public $password = '123';
-    // public $password_confirmation;
+    public $password;
+    public $password_confirmation;
 
     public function register()
     {
@@ -46,7 +46,7 @@ class Register extends Component
         ]);
 
         if ($result) {
-            $this->dispatch('notify', type: 'success', message: 'Registeration was successfull.');
+            $this->dispatch('notify', type: 'success', message: 'Registeration was successfull. You can now login.');
 
             $app = config('app.name');
             $userEmail = $validated['email'];
