@@ -24,7 +24,7 @@ class Register extends Component
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'country' => 'required|string|max:255',
-            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -46,32 +46,58 @@ class Register extends Component
         ]);
 
         if ($result) {
-            $this->dispatch('notify', type: 'success', message: 'Your Callback Request was successful! Please wait for our Teams response.');
+            $this->dispatch('notify', type: 'success', message: 'Registeration was successfull.');
 
             $app = config('app.name');
             $userEmail = $validated['email'];
 
             $full_name = $validated['name'];
-            $subject = "Callback Request Received";
+            $subject = "Welcome to $app";
 
             $bodyUser = [
                 "name" => $full_name,
-                "title" => "Callback Request",
-                "message" => "Thank you for contacting $app! We’ve received your callback request, and our support team will reach out to you shortly. 
-                We’re excited to assist you in getting started with secure and seamless digital asset management, and we look forward to helping you make the most of your journey.",
+                "title" => "Welcome to $app",
+                "message" => "
+                    Hi $full_name,<br><br>
+
+                    Welcome to <strong>$app</strong> — we're excited to have you join our community! 🎉<br><br>
+
+                    Your account is now active, and you're ready to explore secure Web3 tools including:<br>
+                    • Safe storage for your digital assets<br>
+                    • Easy sending, receiving, and swapping<br>
+                    • NFT management and activity tracking<br>
+                    • Secure, private and encrypted wallet access<br><br>
+
+                    If you ever need help, our support team is always available.<br><br>
+
+                    <strong>Thank you for choosing $app — your trusted gateway to the Web3 world.</strong><br><br>
+
+                    Best regards,<br>
+                    The $app Team
+                "
             ];
+
 
             $bodyAdmin = [
                 "name" => "Admin",
-                "title" => "New Callback Request",
-                "message" => "Hello Admin, a new callback request has been submitted by $full_name on $app. Please reach out to the user at $userEmail to provide assistance.
-                <br><br>
-                <p>Users Details:</p>
+                "title" => "New User Registration",
+                "message" => "
+                Hello Admin,<br><br>
+
+                A new user has successfully registered on <strong>$app</strong>.<br>
+                Please review their details and provide support if needed.<br><br>
+
+                <strong>User Details:</strong><br>
                 <ul>
-                <li><strong>Email:</strong> $userEmail</li>
+                    <li><strong>Full Name:</strong> $full_name</li>
+                    <li><strong>Email:</strong> $userEmail</li>
                 </ul>
-                ",
+
+                Regards,<br>
+                System Notification — $app
+            "
             ];
+
 
             try {
                 // user email
