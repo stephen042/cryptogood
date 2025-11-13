@@ -65,6 +65,8 @@
     </div>
     <!-- ===== Page Wrapper End ===== -->
     <script defer="" src="{{ asset('assets/bundle.js') }}"></script>
+
+    {{-- live chat --}}
     <script src="//code.jivosite.com/widget/GKwIssrJXQ" async></script>
     @livewireScripts
 
